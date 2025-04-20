@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #121212;
+    /* Dark background */
+    color: #eee;
+    /* Light text */
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Container to center the content */
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    background: #1e1e1e;
+    /* Dark container */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Heading style */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #3498db;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Label styling */
+form label {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+/* Input field styling */
+form input[type="url"] {
+    padding: 12px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    background: #2a2a2a;
+    color: #eee;
+}
+
+/* Button styling */
+form button {
+    padding: 12px;
+    background: #3498db;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+form button:hover {
+    background: #2980b9;
+}
+
+/* Result container styling */
+#result {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* Link styling within the result */
+#result a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#result a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .container {
+        margin: 20px;
+        padding: 20px;
+    }
+}
