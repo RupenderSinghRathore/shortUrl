@@ -2,7 +2,6 @@ package models
 
 import (
 	"database/sql"
-	"fmt"
 )
 
 type urlStr struct {
@@ -33,7 +32,6 @@ func (u *UrlDB) Retrieve(hash string) (string, error) {
 
 	err := row.Scan(&url)
 	if err != nil {
-		fmt.Printf("i hate niggas")
 		return "", err
 	}
 	return url, nil

@@ -18,7 +18,7 @@ type application struct {
 
 func main() {
 	addr := flag.String("addr", ":8080", "Port to be used for server")
-	dsn := flag.String("dsn", "web:touka@/shortUrl?parseTime=true", "Database user auth")
+	dsn := flag.String("dsn", "furry:touka@/shortUrl?parseTime=true", "Database user auth")
 	flag.Parse()
 
 	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
