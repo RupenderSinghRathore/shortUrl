@@ -4,7 +4,7 @@ import (
 	"database/sql"
 )
 
-type urlStr struct {
+type UrlStr struct {
 	Url string `json:"url"`
 }
 

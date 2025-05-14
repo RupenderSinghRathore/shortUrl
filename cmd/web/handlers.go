@@ -9,10 +9,6 @@ import (
 	"github.com/RupenderSinghRathore/shortUrl/internal/models"
 )
 
-type urlStr struct {
-	Url string `json:"url"`
-}
-
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	ts, err := template.ParseFiles("./ui/html/pages/home.tmpl")
 	if err != nil {
@@ -36,7 +32,7 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) giveHash(w http.ResponseWriter, r *http.Request) {
-	var url = &urlStr{}
+	var url = &models.UrlStr{}
 	err := json.NewDecoder(r.Body).Decode(url)
 	if err != nil {
 		app.serverError(w, r, err)
