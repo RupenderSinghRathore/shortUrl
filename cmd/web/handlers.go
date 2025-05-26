@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"html/template"
-	"log"
 	"net/http"
 
 	"github.com/RupenderSinghRathore/shortUrl/internal/models"
@@ -12,23 +11,10 @@ import (
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	ts, err := template.ParseFiles("./ui/html/pages/home.tmpl")
 	if err != nil {
-		log.Fatalf("Error: %v   :in fuck function", err)
+		app.serverError(w, r, err)
+		return
 	}
 	err = ts.Execute(w, nil)
-	// files := []string{
-	// 	"./ui/html/pages/home.tmpl",
-	// 	"./ui/html/base.tmpl",
-	// }
-	// ts, err := template.ParseFiles(files...)
-	// if err != nil {
-	// 	app.serverError(w, r, err)
-	// 	return
-	// }
-	// err = ts.ExecuteTemplate(w, "base", nil)
-	// if err != nil {
-	// 	app.serverError(w, r, err)
-	// 	return
-	// }
 }
 
 func (app *application) giveHash(w http.ResponseWriter, r *http.Request) {
@@ -36,6 +22,10 @@ func (app *application) giveHash(w http.ResponseWriter, r *http.Request) {
 	err := json.NewDecoder(r.Body).Decode(url)
 	if err != nil {
 		app.serverError(w, r, err)
+		return
+	}
+	if url.Url == "" {
+		http.Error(w, "$$ Url field is empty!! $$", http.StatusBadRequest)
 		return
 	}
 	hash := models.CreateHash(url.Url)
@@ -56,4 +46,8 @@ func (app *application) redirect(w http.ResponseWriter, r *http.Request) {
 func (app *application) serverError(w http.ResponseWriter, r *http.Request, err error) {
 	app.logger.Error(err.Error(), "Method", r.Method, "url", r.URL.RequestURI())
 	http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+}
+
+func ping(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("OK"))
 }

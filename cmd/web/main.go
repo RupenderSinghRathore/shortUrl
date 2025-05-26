@@ -24,7 +24,7 @@ func main() {
 	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
 	db, err := openDB(*dsn)
 	if err != nil {
-		logger.Info(err.Error())
+		logger.Error(err.Error())
 		os.Exit(1)
 	}
 	defer db.Close()
