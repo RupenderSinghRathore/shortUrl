@@ -19,7 +19,7 @@
         <h1>URL Shortener</h1>
 
         <!-- Form to input the URL -->
-        <form hx-post="http://localhost:8080/hash" hx-trigger="submit" hx-ext="json-enc" hx-target="#result"
+        <form hx-post="/hash" hx-trigger="submit" hx-ext="json-enc" hx-target="#result"
             hx-swap="innerHTML">
             <label for="url">Enter URL to shorten:</label>
             <input type="url" id="url" name="url" placeholder="https://example.com" required />
