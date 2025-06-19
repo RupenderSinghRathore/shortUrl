@@ -17,7 +17,7 @@ type application struct {
 }
 
 func main() {
-	addr := flag.String("addr", ":8080", "Port to be used for server")
+	addr := flag.String("addr", "0.0.0.0:8080", "Port to be used for server")
 	dsn := flag.String("dsn", "furry:touka@/shortUrl?parseTime=true", "Database user auth")
 	flag.Parse()
 
@@ -34,7 +34,7 @@ func main() {
 	}
 
 	logger.Info("Starting the server..", "port", *addr)
-	err = http.ListenAndServe(*addr, app.routes())
+	err = http.ListenAndServeTLS(*addr, "server.crt", "server.key", app.routes())
 	logger.Error(err.Error())
 	os.Exit(1)
 }
