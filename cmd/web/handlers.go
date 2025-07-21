@@ -15,6 +15,10 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	err = ts.Execute(w, nil)
+	if err != nil {
+		app.serverError(w, r, err)
+		return
+	}
 }
 
 func (app *application) giveHash(w http.ResponseWriter, r *http.Request) {
