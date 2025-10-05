@@ -1,16 +1,4 @@
-/* main.css */
 :root {
-  /* Light theme defaults */
-  --bg-color: #ffffff;
-  --text-color: #1a1a1a;
-  --primary-color: #2563eb;
-  --input-bg: #f3f4f6;
-  --input-border: #e5e7eb;
-  --container-bg: #f9fafb;
-  --hover-brightness: 0.95;
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-
-  /* Dark theme variables */
   --bg-color-dark: #0f172a;
   --text-color-dark: #f8fafc;
   --primary-color-dark: #60a5fa;
@@ -21,36 +9,9 @@
   --shadow-dark: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
 }
 
-/* System preference detection */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color: var(--bg-color-dark);
-    --text-color: var(--text-color-dark);
-    --primary-color: var(--primary-color-dark);
-    --input-bg: var(--input-bg-dark);
-    --input-border: var(--input-border-dark);
-    --container-bg: var(--container-bg-dark);
-    --hover-brightness: var(--hover-brightness-dark);
-    --shadow: var(--shadow-dark);
-  }
-}
-
-/* Manual dark mode override */
-[data-theme="dark"] {
-  --bg-color: var(--bg-color-dark);
-  --text-color: var(--text-color-dark);
-  --primary-color: var(--primary-color-dark);
-  --input-bg: var(--input-bg-dark);
-  --input-border: var(--input-border-dark);
-  --container-bg: var(--container-bg-dark);
-  --hover-brightness: var(--hover-brightness-dark);
-  --shadow: var(--shadow-dark);
-}
-
-/* Base styles */
 body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
+  background-color: var(--bg-color-dark);
+  color: var(--text-color-dark);
   font-family: "Segoe UI", system-ui, sans-serif;
   line-height: 1.5;
   margin: 0;
@@ -62,52 +23,49 @@ body {
 }
 
 .container {
-  max-width: 800px;
+  max-width: 60%;
   margin: 0 auto;
-  background-color: var(--container-bg);
+  margin-top: 60px;
+  background-color: var(--container-bg-dark);
   padding: 2rem;
   border-radius: 0.5rem;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-dark);
 }
 
 h1 {
-  color: var(--primary-color);
+  color: var(--primary-color-dark);
   margin-bottom: 2rem;
   text-align: center;
   font-size: 2.5rem;
 }
 
 form {
-  display: grid;
+  display: flex;
   gap: 1rem;
   margin-bottom: 2rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
 }
-
-label {
-  font-weight: 600;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
 input[type="url"] {
-  width: 100%;
+  width: 60%;
   padding: 0.75rem;
-  border: 2px solid var(--input-border);
+  border: 2px solid var(--input-border-dark);
   border-radius: 0.375rem;
-  background-color: var(--input-bg);
-  color: var(--text-color);
+  background-color: var(--input-bg-dark);
+  color: var(--text-color-dark);
   transition: border-color 0.2s ease;
 }
-
 input[type="url"]:focus {
   outline: none;
-  border-color: var(--primary-color);
+  border-color: var(--primary-color-dark);
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
 }
-
 button[type="submit"] {
-  background-color: var(--primary-color);
-  color: white;
+  /* background-color: var(--primary-color-dark); */
+  background-color: var(--input-border-dark);
+  color: var(--text-color-dark);
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 0.375rem;
@@ -115,41 +73,11 @@ button[type="submit"] {
   font-weight: 600;
   transition: filter 0.2s ease;
 }
-
 button[type="submit"]:hover {
-  filter: brightness(var(--hover-brightness));
+  /* filter: brightness(var(--hover-brightness-dark)); */
+  background-color: var(--primary-color-dark);
 }
 
-#result {
-  margin-top: 1.5rem;
-  padding: 1rem;
-  border-radius: 0.375rem;
-  background-color: var(--input-bg);
-}
-
-/* Theme toggle */
-.theme-toggle {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 50%;
-  transition: background-color 0.2s ease;
-}
-
-.theme-toggle:hover {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-[data-theme="dark"] .theme-toggle:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.theme-toggle svg {
-  width: 24px;
-  height: 24px;
-  fill: var(--text-color);
+#result-container {
+  text-align: center;
 }
