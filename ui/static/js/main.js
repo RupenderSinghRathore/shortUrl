@@ -1,8 +1,27 @@
-document.addEventListener("DOMContentLoaded", function () {
-    document.body.addEventListener("htmx:beforeSwap", function (evt) {
-        evt.preventDefault();
-        const hash = evt.detail.xhr.response;
-        document.querySelector("#result").innerHTML =
-            `<p>Short URL: <a href="https://localhost:8080/${hash}">https://localhost:8080/${hash}</a></p>`;
+const form = document.getElementById("form-data");
+const outputContainer = document.getElementById("result-container");
+// const output = document.getElementById("result");
+const output = document.createElement("a");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const formData = new FormData(form);
+  const url = formData.get("url");
+
+  try {
+    const res = await fetch(form.action, {
+      method: form.method,
+      body: new URLSearchParams({ url }),
     });
+    const hash = await res.text();
+    const link = `${window.location.origin}/${hash}`;
+    output.href = link;
+    output.textContent = link;
+    output.target = "_blank";
+    output.setAttribute("style", "text-decoration: none; color: #01BFCF;");
+    outputContainer.textContent = `Short url: `;
+    outputContainer.appendChild(output);
+  } catch (err) {
+    console.log(err);
+  }
 });
